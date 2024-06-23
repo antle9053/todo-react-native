@@ -2,7 +2,11 @@ import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedView } from "@/components/ThemedView";
 import { AppContext, AppContextType } from "@/context";
 import { useContext } from "react";
-import { Button, Image, StyleSheet } from "react-native";
+import { Image, StyleSheet, Pressable, Text } from "react-native";
+import { styled } from "nativewind";
+
+const TWButton = styled(Pressable);
+const TWText = styled(Text);
 
 export default function HomeScreen() {
   const { count, increase } = useContext(AppContext) as AppContextType;
@@ -17,12 +21,13 @@ export default function HomeScreen() {
       }
     >
       <ThemedView>
-        <Button
+        <TWButton
+          className="bg-red-500 px-3 py-1 rounded-full"
           onPress={increase}
-          title={`${count}`}
-          color="#841584"
           accessibilityLabel="Learn more about this purple button"
-        />
+        >
+          <TWText className="text-white font-bold">{count}</TWText>
+        </TWButton>
       </ThemedView>
     </ParallaxScrollView>
   );
